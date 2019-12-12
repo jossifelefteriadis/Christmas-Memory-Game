@@ -40,16 +40,19 @@ body {
 .container__game-container {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  grid-gap: 10px;
-  margin: 50px;
+  grid-gap: 1%;
   justify-content: center;
+  perspective: 500px;
 }
 
 .card {
   position: relative;
-  background-color: #000000;
   height: 175px;
   width: 175px;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .card-face {
@@ -60,18 +63,95 @@ body {
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
+  border-radius: 10px;
+  border: 1px solid #bc1232;
+  transition: transform 500ms ease-in-out;
+}
+
+.card:hover .card-back {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .card-front {
+  transform: rotateY(0);
+}
+
+.overlay-text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #4f8e57;
+  font-family: Christmas, serif;
+  display: none;
+}
+
+.overlay-text-small {
+  font-size: 3.5rem;
+}
+
+.overlay-text.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 10rem;
+  }
+}
+
+.card-back {
+  background: repeating-linear-gradient(
+    135deg,
+    #2b5844,
+    #2b5844 15px,
+    #7c0016 15px,
+    #7c0016 30px
+  );
+  box-shadow: inset 0 0 25px #000000;
+  /*background-color: #000000;*/
+  border-color: #bc1232;
 }
 
 .card-front {
-  transform: rotateX(180deg);
+  background-color: #f2cbae;
+  border-color: #2b5844;
+  transform: rotateY(180deg);
+}
+
+.card-value {
+  transition: transform 150ms ease-in-out;
+  transform: scale(0.9);
+}
+
+.card-front:hover .card-value {
+  transform: scale(1);
 }
 
 .santa {
-  align-self: flex-start;
+  align-self: center;
   transition: transform 250ms ease-in-out;
   transform: scale(0.9, 0.9);
 }
 
 .card-back:hover .santa {
   transform: scale(1, 1);
+}
+
+@media (max-width: 750px) {
+  .container__game-container {
+    grid-template-columns: repeat(2, auto);
+  }
 }
