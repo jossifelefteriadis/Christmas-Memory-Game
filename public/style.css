@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Christmas';
+  src: url('Miraculous&Christmas.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(#c91435, #690013);
+}
+
+.header {
+  color: #4f8e57;
+  text-align: center;
+  font-size: 6rem;
+  font-family: Christmas, serif;
+  font-weight: normal;
+}
+
+.container__game-container__game-info-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info {
+  color: #f2cbae;
+  font-size: 2rem;
+}
+
+.container__game-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+  margin: 50px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  background-color: #000000;
+  height: 175px;
+  width: 175px;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  transform: rotateX(180deg);
+}
+
+.santa {
+  align-self: flex-start;
+  transition: transform 250ms ease-in-out;
+  transform: scale(0.9, 0.9);
+}
+
+.card-back:hover .santa {
+  transform: scale(1, 1);
+}
