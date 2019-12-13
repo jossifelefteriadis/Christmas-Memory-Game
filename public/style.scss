@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'Christmas';
+  src: url('Miraculous&Christmas.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(#c91435, #690013);
+}
+
+.header {
+  color: #4f8e57;
+  text-align: center;
+  font-size: 6rem;
+  font-family: Christmas, serif;
+  font-weight: normal;
+}
+
+.container__game-container__game-info-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info {
+  color: #f2cbae;
+  font-size: 2rem;
+}
+
+.container__game-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 1%;
+  justify-content: center;
+  perspective: 500px;
+}
+
+.card {
+  position: relative;
+  height: 175px;
+  width: 175px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  border: 1px solid #bc1232;
+  transition: transform 500ms ease-in-out;
+}
+
+.card:hover .card-back {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .card-front {
+  transform: rotateY(0);
+}
+
+.overlay-text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #4f8e57;
+  font-family: Christmas, serif;
+  display: none;
+}
+
+.overlay-text-small {
+  font-size: 3.5rem;
+}
+
+.overlay-text.visible {
+  display: flex;
+  flex-direction: column;
+  animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 10rem;
+  }
+}
+
+.card-back {
+  background: repeating-linear-gradient(
+    135deg,
+    #2b5844,
+    #2b5844 15px,
+    #7c0016 15px,
+    #7c0016 30px
+  );
+  box-shadow: inset 0 0 25px #000000;
+  /*background-color: #000000;*/
+  border-color: #bc1232;
+}
+
+.card-front {
+  background-color: #f2cbae;
+  border-color: #2b5844;
+  transform: rotateY(180deg);
+  box-shadow: inset 0 0 10px #838383;
+}
+
+.card-value {
+  transition: transform 150ms ease-in-out;
+  transform: scale(0.9);
+}
+
+.card-front:hover .card-value {
+  transform: scale(1);
+}
+
+.santa {
+  align-self: center;
+  transition: transform 250ms ease-in-out;
+  transform: scale(0.9, 0.9);
+}
+
+.card-back:hover .santa {
+  transform: scale(1, 1);
+}
+
+$s1: '';
+@for $i from 1 through 400 {
+  $s1: $s1 +
+    random(1000) *
+    0.1vw +
+    '' +
+    random(1000) *
+    0.1vh +
+    '' +
+    random(50) *
+    -0.1rem +
+    #ffffff;
+  @if $i < 400 {
+    $s1: $s1 + ',';
+  }
+}
+
+.snow {
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.layer1 {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: blur(1.5px);
+  box-shadow: #{$s1};
+}
+
+@media (max-width: 750px) {
+  .container__game-container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
