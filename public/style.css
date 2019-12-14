@@ -89,6 +89,7 @@ body {
   color: #4f8e57;
   font-family: Christmas, serif;
   display: none;
+  cursor: pointer;
 }
 
 .overlay-text-small {

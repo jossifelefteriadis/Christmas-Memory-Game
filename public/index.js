@@ -152,7 +152,7 @@ class MixOrMatch {
   }
 }
 
-function ready() {
+const ready = () => {
   let overlays = Array.from(document.querySelectorAll('.overlay-text'));
   let cards = Array.from(document.querySelectorAll('.card'));
   let game = new MixOrMatch(60, cards);
@@ -168,7 +168,7 @@ function ready() {
       game.flipCard(card);
     });
   });
-}
+};
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', ready());
