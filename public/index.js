@@ -90,6 +90,12 @@ class MixOrMatch {
     document.querySelector('.game-over-text').classList.add('visible');
   }
 
+  victory() {
+    clearInterval(this.countDown);
+    this.audioController.victory();
+    document.querySelector('.victory-text').classList.add('visible');
+  }
+
   shuffleCards() {
     for (let i = this.cardsArray.length - 1; i > 0; i--) {
       let randIndex = Math.floor(Math.random() * (i + 1));
@@ -111,7 +117,7 @@ class MixOrMatch {
 function ready() {
   let overlays = Array.from(document.querySelectorAll('.overlay-text'));
   let cards = Array.from(document.querySelectorAll('.card'));
-  let game = new MixOrMatch(5, cards);
+  let game = new MixOrMatch(100, cards);
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', () => {
