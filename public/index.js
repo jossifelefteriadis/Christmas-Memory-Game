@@ -50,12 +50,19 @@ class MixOrMatch {
     setTimeout(() => {
       this.audioController.startMusic();
       this.shuffleCards();
-      this.countdown = this.startCountdown();
+      this.countDown = this.startCountDown();
       this.busy = false;
     }, 500);
     this.hideCards();
     this.timer.innerText = this.timeRemaining;
     this.ticker.innerText = this.totalClicks;
+  }
+
+  hideCards() {
+    this.cardsArray.forEach(card => {
+      card.classList.remove('visible');
+      card.classList.remove('matched');
+    });
   }
 
   flipCard(card) {
@@ -65,6 +72,22 @@ class MixOrMatch {
       this.ticker.innerText = this.totalClicks;
       card.classList.add('visible');
     }
+  }
+
+  startCountDown() {
+    return setInterval(() => {
+      this.timeRemaining--;
+      this.timer.innerText = this.timeRemaining;
+      if (this.timeRemaining === 0) {
+        this.gameOver();
+      }
+    }, 1000);
+  }
+
+  gameOver() {
+    clearInterval(this.countDown);
+    this.audioController.gameOver();
+    document.querySelector('.game-over-text').classList.add('visible');
   }
 
   shuffleCards() {
@@ -88,7 +111,7 @@ class MixOrMatch {
 function ready() {
   let overlays = Array.from(document.querySelectorAll('.overlay-text'));
   let cards = Array.from(document.querySelectorAll('.card'));
-  let game = new MixOrMatch(100, cards);
+  let game = new MixOrMatch(5, cards);
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', () => {
