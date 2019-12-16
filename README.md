@@ -12,3 +12,4 @@ No backend implemented. The whole game is built in JavaScript with class declara
 * Pair all before the time is up and you win!
 
 ## Screenshots from the game
+![Christmas Memory Click To Start](https://github.com/jossifelefteriadis/Christmas-Memory-Game/blob/master/christmas_memory-click-to-start.png)
