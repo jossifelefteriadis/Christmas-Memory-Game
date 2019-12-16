@@ -76,6 +76,45 @@ body {
   transform: rotateY(0);
 }
 
+.card-back {
+  background: repeating-linear-gradient(
+    135deg,
+    #2b5844,
+    #2b5844 15px,
+    #7c0016 15px,
+    #7c0016 30px
+  );
+  box-shadow: inset 0 0 25px #000000;
+  /*background-color: #000000;*/
+  border-color: #bc1232;
+}
+
+.santa {
+  align-self: center;
+  transition: transform 250ms ease-in-out;
+  transform: scale(0.9, 0.9);
+}
+
+.card-back:hover .santa {
+  transform: scale(1, 1);
+}
+
+.card-value {
+  transition: transform 150ms ease-in-out;
+  transform: scale(0.9);
+}
+
+.card-front:hover .card-value {
+  transform: scale(1);
+}
+
+.card-front {
+  background-color: #f2cbae;
+  border-color: #2b5844;
+  transform: rotateY(180deg);
+  box-shadow: inset 0 0 10px #838383;
+}
+
 .overlay-text {
   position: fixed;
   top: 0;
@@ -111,45 +150,6 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     font-size: 10rem;
   }
-}
-
-.card-back {
-  background: repeating-linear-gradient(
-    135deg,
-    #2b5844,
-    #2b5844 15px,
-    #7c0016 15px,
-    #7c0016 30px
-  );
-  box-shadow: inset 0 0 25px #000000;
-  /*background-color: #000000;*/
-  border-color: #bc1232;
-}
-
-.card-front {
-  background-color: #f2cbae;
-  border-color: #2b5844;
-  transform: rotateY(180deg);
-  box-shadow: inset 0 0 10px #838383;
-}
-
-.card-value {
-  transition: transform 150ms ease-in-out;
-  transform: scale(0.9);
-}
-
-.card-front:hover .card-value {
-  transform: scale(1);
-}
-
-.santa {
-  align-self: center;
-  transition: transform 250ms ease-in-out;
-  transform: scale(0.9, 0.9);
-}
-
-.card-back:hover .santa {
-  transform: scale(1, 1);
 }
 
 @media (max-width: 750px) {

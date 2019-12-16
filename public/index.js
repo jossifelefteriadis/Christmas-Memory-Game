@@ -43,20 +43,42 @@ class MixOrMatch {
     this.audioController = new AudioController();
   }
   startGame() {
-    this.cardToCheck = null;
     this.totalClicks = 0;
     this.timeRemaining = this.totalTime;
+    this.cardToCheck = null;
     this.matchedCards = [];
     this.busy = true;
     setTimeout(() => {
       this.audioController.startMusic();
-      this.shuffleCards();
+      this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
       this.busy = false;
     }, 500);
     this.hideCards();
     this.timer.innerText = this.timeRemaining;
     this.ticker.innerText = this.totalClicks;
+  }
+
+  startCountDown() {
+    return setInterval(() => {
+      this.timeRemaining--;
+      this.timer.innerText = this.timeRemaining;
+      if (this.timeRemaining === 0) {
+        this.gameOver();
+      }
+    }, 1000);
+  }
+
+  gameOver() {
+    clearInterval(this.countDown);
+    this.audioController.gameOver();
+    document.querySelector('.game-over-text').classList.add('visible');
+  }
+
+  victory() {
+    clearInterval(this.countDown);
+    this.audioController.victory();
+    document.querySelector('.victory-text').classList.add('visible');
   }
 
   hideCards() {
@@ -109,38 +131,16 @@ class MixOrMatch {
     }, 1000);
   }
 
-  getCardType(card) {
-    return card.querySelectorAll('.card-value')[0].src;
-  }
-
-  startCountDown() {
-    return setInterval(() => {
-      this.timeRemaining--;
-      this.timer.innerText = this.timeRemaining;
-      if (this.timeRemaining === 0) {
-        this.gameOver();
-      }
-    }, 1000);
-  }
-
-  gameOver() {
-    clearInterval(this.countDown);
-    this.audioController.gameOver();
-    document.querySelector('.game-over-text').classList.add('visible');
-  }
-
-  victory() {
-    clearInterval(this.countDown);
-    this.audioController.victory();
-    document.querySelector('.victory-text').classList.add('visible');
-  }
-
   shuffleCards() {
     for (let i = this.cardsArray.length - 1; i > 0; i--) {
       let randIndex = Math.floor(Math.random() * (i + 1));
       this.cardsArray[randIndex].style.order = i;
       this.cardsArray[i].style.order = randIndex;
     }
+  }
+
+  getCardType(card) {
+    return card.querySelectorAll('.card-value')[0].src;
   }
 
   canFlipCard(card) {
