@@ -33,13 +33,13 @@ class AudioController {
   }
 }
 
-class MixOrMatch {
+class Memory {
   constructor(totalTime, cards) {
     this.cardsArray = cards;
     this.totalTime = totalTime;
     this.timeRemaining = totalTime;
     this.timer = document.querySelector('.time-remaining');
-    this.ticker = document.querySelector('.flips');
+    this.flips = document.querySelector('.flips');
     this.audioController = new AudioController();
   }
   startGame() {
@@ -56,7 +56,7 @@ class MixOrMatch {
     }, 500);
     this.hideCards();
     this.timer.innerText = this.timeRemaining;
-    this.ticker.innerText = this.totalClicks;
+    this.flips.innerText = this.totalClicks;
   }
 
   startCountDown() {
@@ -92,7 +92,7 @@ class MixOrMatch {
     if (this.canFlipCard(card)) {
       this.audioController.flip();
       this.totalClicks++;
-      this.ticker.innerText = this.totalClicks;
+      this.flips.innerText = this.totalClicks;
       card.classList.add('visible');
       if (this.cardToCheck) {
         this.checkForCardMatch(card);
@@ -103,10 +103,10 @@ class MixOrMatch {
   }
 
   checkForCardMatch(card) {
-    if (this.getCardType(card) === this.getCardType(this.cardToCheck)) {
+    if (this.getCardValue(card) === this.getCardValue(this.cardToCheck)) {
       this.cardMatch(card, this.cardToCheck);
     } else {
-      this.cardMisMatch(card, this.cardToCheck);
+      this.cardNoMatch(card, this.cardToCheck);
     }
     this.cardToCheck = null;
   }
@@ -122,7 +122,7 @@ class MixOrMatch {
     }
   }
 
-  cardMisMatch(card1, card2) {
+  cardNoMatch(card1, card2) {
     this.busy = true;
     setTimeout(() => {
       card1.classList.remove('visible');
@@ -139,7 +139,7 @@ class MixOrMatch {
     }
   }
 
-  getCardType(card) {
+  getCardValue(card) {
     return card.querySelectorAll('.card-value')[0].src;
   }
 
@@ -155,7 +155,7 @@ class MixOrMatch {
 const ready = () => {
   let overlays = Array.from(document.querySelectorAll('.overlay-text'));
   let cards = Array.from(document.querySelectorAll('.card'));
-  let game = new MixOrMatch(60, cards);
+  let game = new Memory(60, cards);
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', () => {
