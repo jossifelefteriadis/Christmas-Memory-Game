@@ -3,7 +3,10 @@ The classic game we all loved to play as younger kids - Memory, but with a Chris
 
 No backend implemented. The whole game is built in JavaScript with class declarations.
 
-( music credits at the bottom )
+##### Music Credits
+* Background music: [Jingle Bells by Podington Bear](https://freemusicarchive.org/music/Podington_Bear/Happy_Holidays_Merry_Sythmas/Jingle_Bells_1305)
+
+( this game is mostly based on the card matching tutorial from Web Dev Simplified )
 
 ## Rules
 * Start Game
