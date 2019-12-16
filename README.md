@@ -1,5 +1,5 @@
 # Christmas Memory Card Game
-The classic game we all loved to play as younger kids - Memory, but with a Christmas theme.
+The classic game we all loved to play as kids - Memory, but with a Christmas theme.
 
 No backend implemented. The whole game is built in JavaScript with class declarations.
 
